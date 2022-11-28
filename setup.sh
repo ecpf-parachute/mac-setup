@@ -61,7 +61,7 @@ else
   done
 fi
 
-# 6. Install ZSH autosuggestions
+# 6. Install ZSH syntax highlighting
 echo "---------------------"
 echo "6. Install ZSH syntax highlighting"
 # https://github.com/zsh-users/zsh-syntax-highlighting
@@ -83,16 +83,37 @@ else
   done
 fi
 
-
-# 7. Install fzf
+# 7. Install oh-my-zsh asdf
 echo "---------------------"
-echo "7. Install fzf for fuzzy finding files"
+echo "7. Install oh-my-zsh asdf plugin"
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/asdf
+
+if [ -d ${ZSH_CUSTOM}/plugins/asdf ]
+then
+  :
+else
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf
+  echo "Add the following lines to ~/.zshrc and then press any key to continue"
+  echo ""
+  echo "plugins=([already existing plugins...] asdf)"
+  while [ true ] ; do
+    read -n 1
+    if [ $? = 0 ] ; then
+      break ;
+    fi
+  done
+fi
+
+
+# 8. Install fzf
+echo "---------------------"
+echo "8. Install fzf for fuzzy finding files"
 fzf --help > /dev/null || brew install fzf && $(brew --prefix)/opt/fzf/install
 
 
-# 8. Set git aliases
+# 9. Set git aliases
 echo "---------------------"
-echo "8. Setting git aliases"
+echo "9. Setting git aliases"
 
 git config --global alias.stick branch
 git config --global alias.chop "branch -d"
@@ -105,4 +126,3 @@ git config --global alias.purrrrr "pull --rebase"
 git config --global alias.purrrrrr "pull --rebase"
 git config --global alias.purrrrrrr "pull --rebase"
 git config --global alias.purrrrrrrr "pull --rebase"
-
