@@ -4,6 +4,7 @@ source ~/.zshrc
 echo "---------------------"
 echo "1. Install homebrew"
 brew -v > /dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+echo export 'PATH=/opt/homebrew/bin:$PATH' >> ~/.zshrc
 
 # 2. Download iterm2
 echo "---------------------"
